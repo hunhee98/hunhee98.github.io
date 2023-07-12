@@ -30,25 +30,21 @@ url: 'https://walkerhilla.github.io'
 
 github:
   username: walkerhilla            # change to your github username
-
-instagram:
-  username: dev_huny
   
-# twitter:
-#  username: twitter_username # change to your twitter username
+twitter:
+ username:  twitter_username # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: HUNHIE LEE
-  email: lhh2215@gmail.com  # change to your email address
+  email: huny98.dev@gmail.com  # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your twitter homepage
-    - https://github.com/walkerhilla # change to your github homepage
+    # - https://github.com/walkerhilla # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    # - https://www.linkedin.com/in/hunhie-lee
 
 google_site_verification: # fill in to your verification string
 
@@ -76,10 +72,10 @@ theme_mode: #light
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: '/'
+img_cdn: "https://walkerhilla.github.io"
 
 # the avatar on sidebar, support local or CORS resources
-avatar: 'assets/img/me.png'
+avatar: /assets/img/me.png
 
 # boolean type, the global switch for TOC in posts.
 toc: true
