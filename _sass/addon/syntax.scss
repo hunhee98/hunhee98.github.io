@@ -255,15 +255,14 @@ div {
         $dot-size: 0.75rem;
         $dot-margin: 0.5rem;
 
-        content: '';
+        content: "";
         display: inline-block;
         margin-left: 1rem;
-        width: $dot-size;
-        height: $dot-size;
+        width: .75rem;
+        height: .75rem;
         border-radius: 50%;
-        background-color: var(--code-header-muted-color);
-        box-shadow: ($dot-size + $dot-margin) 0 0 var(--code-header-muted-color),
-          ($dot-size + $dot-margin) * 2 0 0 var(--code-header-muted-color);
+        background-color: #eb6150;
+        box-shadow: 1.25rem 0 0 #f3b63b, 2.5rem 0 0 #54bb44;
       }
     }
   }
