@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "여러 개의 View에 TapGestureRecognizer 적용하고 터치 이벤트 구분하기"
-date: 2023-07-25 09:10 +0900
+date: 2023-07-26 10:55 +0900
 tags:
 - UIKit
 - TapGestureRecognizer
