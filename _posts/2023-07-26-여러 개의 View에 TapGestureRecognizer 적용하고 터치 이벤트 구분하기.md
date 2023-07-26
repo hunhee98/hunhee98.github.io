@@ -9,7 +9,8 @@ categories:
 - iOS
 ---
 
-기본적으로 터치 이벤트가 설정되어 있지 않는 View는 **`TapGestureRecognizer`**를 적용하여 터치 이벤트를 추가할 수 있다. *참고 - [UILabel, UIImageView 터치 이벤트 추가하기](https://walkerhilla.github.io/posts/UILabel,-UIImageView-%ED%84%B0%EC%B9%98-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/)*
+기본적으로 터치 이벤트가 설정되어 있지 않는 View는 **`TapGestureRecognizer`**를 적용하여 터치 이벤트를 추가할 수 있다. 
+*참고 - [UILabel, UIImageView 터치 이벤트 추가하기](https://walkerhilla.github.io/posts/UILabel,-UIImageView-%ED%84%B0%EC%B9%98-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/)*
 
 만약 여러 개의 View에 터치 이벤트를 설정하고자 한다면 View들을 배열에 담아 **반복문** 또는 **forEach문**으로 TapGestureRecognizer를 추가한다면 코드가 깔끔할 것이다. 그래서 바로 작성해봄..
 
@@ -54,7 +55,6 @@ func setupViewTapGesture() {
 ```
 
 UITapGestureRecognizer가 자신이 등록된 뷰의 터치 이벤트를 인식해서 viewTapped 메소드를 실행하는데 이때 인자로 UITapGestureRecognizer 인스턴스를 넘겨주게 된다. UITapGestureRecognizer 인스턴스에는 등록된 view에 접근할 수 있는 **`view`** 속성이 존재한다. 
-
 ![](https://i.imgur.com/ApC1nQA.png)
 
 ```swift
@@ -63,4 +63,4 @@ UITapGestureRecognizer가 자신이 등록된 뷰의 터치 이벤트를 인식�
 }
 ```
 
-view의 tag 값으로 어떤 뷰가 터치되었는지 구분할 수 있었다.
+view의 tag 값에 접근할 수 있다! 이제 열거형이나 조건문 제어 등으로 터치 이벤트를 분기처리해볼 수 있다.
