@@ -18,7 +18,7 @@ categories:
 
 ![](https://i.imgur.com/1q8tcCR.png)
 
-그러면 위와 같이 자동으로 임베드된 뷰 컨트롤러와 `Segue` 가 있을텐데 이거 둘 다 지우자. 그리고 UITableViewController를 하나 만들어서 임베드하면 된다.
+그러면 위와 같이 자동으로 임베드된 뷰 컨트롤러와 `Segue` 가 있을텐데 둘 다 지우면 된다. 그리고 UITableViewController를 하나 만들어서 임베드하면 된다.
 
 ![](https://i.imgur.com/jH277Zy.gif)
 
