@@ -76,4 +76,4 @@ bounds 값을 변경할 경우 view는 draw 메소드를 호출하지 않고 자
 
 ![](https://i.imgur.com/h7m5uJ2.gif)
 
-즉, view1의 bounds를 변경하면 view1의 자체적인 좌표는 변하지만, view1의 위치는 frame으로 설정되어 있기 때문에 겉으로 보이는 위치는 변하지 않는 것이다. 그러나 view1의 하위 뷰인 view2의 frame은 view1의 좌표로부터 계산되기 때문에 영향을 받는 것이다.
+고로 view1의 bounds를 변경하면 view1의 자체적인 좌표는 변하지만, view1의 위치는 frame으로 설정되어 있기 때문에 겉으로 보이는 위치는 변하지 않는 것이다. 반면에 view1의 하위 뷰인 view2의 위치는 frame 속성에 의해 view1의 좌표로부터 계산되기 때문에 영향을 받는 것이다.
