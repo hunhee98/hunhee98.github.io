@@ -40,10 +40,10 @@ Cell에 열거형으로 정의해보자.
 
 ```swift
 enum JobHuntProgress {
-	case notReviewed
-	case reviewed
-	case notQualified
-	case qualified
+  case notReviewed
+  case reviewed
+  case notQualified
+  case qualified
 }
 ```
 
