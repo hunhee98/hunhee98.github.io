@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 환경에 맞는 gitignore 만들어주는 사이트
-date: 2023-11-20 15:34 +0900
+date: 2023-09-10 15:34 +0900
 tags: 
 categories:
 ---
