@@ -27,14 +27,14 @@ icon:
 
 ### UI 구현
 
-1. Expandable Cell
+#### Expandable Cell
 
 ![](https://i.imgur.com/RFY6odG.gif)
 
 리그 데이터를 테이블 뷰에 표시할 때 국가 단위로 그룹핑하여 국가 셀을 펼쳤을 때 리그 셀이 나타나도록 구현하였다. TableView DiffableDatasource를 사용하여 셀이 펼쳐지고 닫히는 동작을 손 쉽게 구현할 수 있었다. DiffableDatasource의 SnapShot 방식 특성 상 Item 모델이 Hashable을 준수해야하는데 셀의 펼치짐/닫힘 상태를 DiffableDatasource가 구분할 수 있어야 Snapshot이 Apply되기 때문에 뷰의 상태에 관한 프로퍼티를 모델이 지녀야 하는가? 에 대한 의문이 들었지만, 더 나은 해답을 찾지 못한 아쉬움이 있다.
 ![](https://i.imgur.com/VE1RUGF.png)
 
-2. Sticky Header with Nested Scroll
+#### sticky Header with Nested Scroll
 
 ![](https://i.imgur.com/F4bVxHk.gif)
 
@@ -47,8 +47,9 @@ MVVM 구조를 도입하였다. 기존의 MVC 구조에서 컨트롤러가 담�
 궁극적으로 뷰모델이 지니는 비즈니스 로직에서 API와 DB에 관련된 로직을 최대한 분리하였다. 이 과정에서 뷰 모델이 레포지토리를 바로 사용해도 될법한데? 싶은 상황에서도 UseCase 레이어를 하나 더 두는게 합리적인지 의문이 들었다. 또, 의존성 주입이 불가피하게 발생하는 부분을 겪게 되어 의존성 주입을 어떻게 해결할 수 있는지 공부하게 되는 계기가 됐다.
 ### 아쉬운 점
 
-1. 콜백 지옥
+#### 콜백 지옥
 API와 Realm 관련 메소드들을 전부 escaping 비동기 클로저 방식으로 구현하여 콜백 지옥을 겪게 되었다. Swift Concurency에서 도입된 async await 키워드를 통해 해결할 수 있지만, 이 개념을 적용하기엔 개발 단계가 상당히 진행된 상태였다. async await을 도입하려면 결국 비동기 관련 로직이 전부 async await을 사용해야하기 때문에 추후 리팩토링할 예정이다.
+
 ## 출시
 API가 전세계 축구 리그 데이터를 제공하다보니 다국어 대응을 통해 앱스토어 등록 역시 영어와 한국어 모두 준비해서 다국어로 심사를 제출했다. 리젝은 많이 경험해볼 수록 좋을 것 같다는 생각이 들었는데, 앱 내 기능이 적어서 그런지 1번 밖에 겪지 못했다. 사유는 Guide line 4.1 Copy cat
 
