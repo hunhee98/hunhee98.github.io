@@ -28,12 +28,14 @@ icon:
 ### UI 구현
 
 1. Expandable Cell
+
 ![](https://i.imgur.com/RFY6odG.gif)
 
 리그 데이터를 테이블 뷰에 표시할 때 국가 단위로 그룹핑하여 국가 셀을 펼쳤을 때 리그 셀이 나타나도록 구현하였다. TableView DiffableDatasource를 사용하여 셀이 펼쳐지고 닫히는 동작을 손 쉽게 구현할 수 있었다. DiffableDatasource의 SnapShot 방식 특성 상 Item 모델이 Hashable을 준수해야하는데 셀의 펼치짐/닫힘 상태를 DiffableDatasource가 구분할 수 있어야 Snapshot이 Apply되기 때문에 뷰의 상태에 관한 프로퍼티를 모델이 지녀야 하는가? 에 대한 의문이 들었지만, 더 나은 해답을 찾지 못한 아쉬움이 있다.
 ![](https://i.imgur.com/VE1RUGF.png)
 
 2. Sticky Header with Nested Scroll
+
 ![](https://i.imgur.com/F4bVxHk.gif)
 
 리그 상세 데이터를 효과적으로 프레젠트할 수 잇는 Tab menu UI를 채택하였는데, 특정 스크롤 시점부터 Tab bar가 화면 상단에 자연스럽게 고정되도록 구현하였다. 이 과정에서 스크롤 뷰가 중첩되는 상황이 발생하였는데 OuterScroll과 InnerScroll의 스크롤 전환을 자연스럽게 구현하기 위해 두 스크롤 뷰의 기본 스크롤을 비활성화하고 OuterScroll에 UIPanGestureRecognizer를 직접 구현하여 사용자의 팬 제스처에 따라 OuterScroll, InnerScroll의 Offset을 직접 조정하도록 하여 Nested Scroll을 구현하였다. 이 과정에서 상속과 델리게이트 패턴, 메모리 해제 등 여러 트러블 슈팅을 겪을 수 있었다. 구체적인 내용은 Github README에 기술하였다.
