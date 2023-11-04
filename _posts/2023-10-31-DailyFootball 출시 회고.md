@@ -22,23 +22,28 @@ icon:
 
 그 외에도 경기 일정에 맞춰 사용자에게 푸쉬 알림을 보낸다거나, 경기가 진행되는 동안 실시간으로 경기 데이터를 제공하는 등 여러 아이디어가 생각났지만, 정해진 스프린트 기간 내 출시하는 것이 목표다보니 출시 후 업데이트 기능으로 분류하였다.
 #### 자료조사
-기획 단계에서 가장 우려스러웠던 부분은 앱 아이디어 특성 상 모든 콘텐츠를 제 3자로부터 제공 받아야 한다는 것이었다. 축구 리그 데이터를 제공하는 API들이 여럿 있었지만, 대부분 해외에서 운영되는 유료 API였고, API마다 일일 rate limit과 제공하는 데이터 Coverage가 상이했다. 이 API에 상당히 의존적인 앱이다보니 사용해보지도 않은 API들을 쉽사리 선택하기 어려웠다.
+기획 단계에서 가장 우려스러웠던 부분은 앱 아이디어 특성 상 모든 콘텐츠를 제 3자로부터 제공 받아야 한다는 것이었다. 축구 리그 데이터를 제공하는 API들이 여럿 있었지만, 대부분 해외에서 운영되는 유료 API였고, API마다 일일 rate limit과 제공하는 데이터 Coverage가 상이했다. 이러한 API에 상당히 의존적인 앱이다보니 사용해보지도 않은 API들을 쉽사리 선택하기 어려웠다. 
+
+- [API-Football - Restful API for Football data](https://www.api-football.com/)
+- [football-data.org - ur src for machine readable football data](https://www.football-data.org/)
+
+대표적인 위 2가지 API 중에서 하루 100회 무료 호출이 가능한 API-Football을 선택하였다.
 ## 개발
 
 ### UI 구현
 
-#### Expandable Cell
+#### 1. Expandable Cell
 
 ![](https://i.imgur.com/RFY6odG.gif)
 
 리그 데이터를 테이블 뷰에 표시할 때 국가 단위로 그룹핑하여 국가 셀을 펼쳤을 때 리그 셀이 나타나도록 구현하였다. TableView DiffableDatasource를 사용하여 셀이 펼쳐지고 닫히는 동작을 손 쉽게 구현할 수 있었다. DiffableDatasource의 SnapShot 방식 특성 상 Item 모델이 Hashable을 준수해야하는데 셀의 펼치짐/닫힘 상태를 DiffableDatasource가 구분할 수 있어야 Snapshot이 Apply되기 때문에 뷰의 상태에 관한 프로퍼티를 모델이 지녀야 하는가? 에 대한 의문이 들었지만, 더 나은 해답을 찾지 못한 아쉬움이 있다.
 ![](https://i.imgur.com/VE1RUGF.png)
 
-#### sticky Header with Nested Scroll
+#### 2. sticky Header with Nested Scroll
 
 ![](https://i.imgur.com/F4bVxHk.gif)
 
-리그 상세 데이터를 효과적으로 프레젠트할 수 잇는 Tab menu UI를 채택하였는데, 특정 스크롤 시점부터 Tab bar가 화면 상단에 자연스럽게 고정되도록 구현하였다. 이 과정에서 스크롤 뷰가 중첩되는 상황이 발생하였는데 OuterScroll과 InnerScroll의 스크롤 전환을 자연스럽게 구현하기 위해 두 스크롤 뷰의 기본 스크롤을 비활성화하고 OuterScroll에 UIPanGestureRecognizer를 직접 구현하여 사용자의 팬 제스처에 따라 OuterScroll, InnerScroll의 Offset을 직접 조정하도록 하여 Nested Scroll을 구현하였다. 이 과정에서 상속과 델리게이트 패턴, 메모리 해제 등 여러 트러블 슈팅을 겪을 수 있었다. 구체적인 내용은 Github README에 기술하였다.
+리그 상세 데이터를 효과적으로 프레젠트할 수 잇는 Tab menu UI를 채택하였는데, 특정 스크롤 시점부터 Tab bar가 화면 상단에 자연스럽게 고정되도록 구현하였다. Tam Menu UI는 Tamman 라이브러리를 사용하여 구현하였다보니 구조 상 스크롤 뷰가 중첩되는 상황이 발생하였다. OuterScroll과 InnerScroll의 스크롤 전환을 자연스럽게 구현하기 위해 두 스크롤 뷰의 기본 스크롤을 비활성화하고 OuterScroll에 UIPanGestureRecognizer를 직접 구현하여 사용자의 팬 제스처에 따라 OuterScroll, InnerScroll의 Offset을 직접 조정하도록 하여 Nested Scroll을 성공적으로 구현하였다. 이 과정에서 상속과 델리게이트 패턴, 메모리 해제 등 여러 트러블 슈팅을 겪을 수 있었다. 구체적인 내용은 Github README에 기술하였다.
 ### 아키텍처 패턴
 MVVM 구조를 도입하였다. 기존의 MVC 구조에서 컨트롤러가 담당하던 뷰와 모델 사이의 비즈니스 로직들을 덜어내 뷰 모델이라는 레이어를 하나 더 둠으로써 뷰 컨트롤러는 오로지 프레젠팅과 사용자 상호작용과 관한 로직만을 담당하게 하였다. 기획 단계에서 우려되었던 API 의존도를 나름 해결하기 위한 사후 대책으로 아래와 같이 UseCase와 Repository, Router 패턴을 사용하였다.
 - 네트워크 관련 로직들은 Router 패턴으로 한층 추상화된 수준으로 관리, 향후 다른 API로 교체하거나 추가될 경우를 대비하였음
